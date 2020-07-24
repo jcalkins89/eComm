@@ -1,1 +1,1 @@
-### eCommerce Platform built with React, TypeScript and ❤️
+### eCommerce Platform built with React, TypeScript, Styled-Components and ❤️
