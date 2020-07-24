@@ -11,12 +11,13 @@ const MenuItem = ({
   size: string | undefined;
 }) => {
   return (
-    <MenuItemContainer
-      style={{ backgroundImage: `url(${imageUrl})` }}
-      className={`${size}`}
-    >
-      <Content>
-        <Title>{title}</Title>
+    <MenuItemContainer className={`${size}`}>
+      <BackgroundImage
+        style={{ backgroundImage: `url(${imageUrl})` }}
+        className="background-image"
+      ></BackgroundImage>
+      <Content className="content">
+        <Title>{title.toUpperCase()}</Title>
         <Subtitle>SHOP NOW</Subtitle>
       </Content>
     </MenuItemContainer>
@@ -34,8 +35,7 @@ const MenuItemContainer = styled.div`
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
-  background-position: center;
-  background-size: cover;
+  overflow: hidden;
 
   &.large {
     height: 380px;
@@ -48,6 +48,26 @@ const MenuItemContainer = styled.div`
   &:last-child {
     margin-left: 7.5px;
   }
+
+  &:hover {
+    cursor: pointer;
+
+    & .background-image {
+      transform: scale(1.1);
+      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+
+    & .content {
+      opacity: 0.9;
+    }
+  }
+`;
+
+const BackgroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
 `;
 
 const Content = styled.div`
@@ -58,6 +78,9 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  background-color: white;
+  opacity: 0.7;
+  position: absolute;
 `;
 
 const Title = styled.h1`
