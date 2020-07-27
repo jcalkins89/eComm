@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-const MenuItem = ({
-  title,
-  imageUrl,
-  size,
-}: {
+export interface MenuItemProps extends RouteComponentProps<any> {
   title: string;
   imageUrl: string;
-  size: string | undefined;
-}) => {
+  size?: string | undefined;
+  linkUrl: string;
+}
+
+const MenuItem = (props: MenuItemProps): JSX.Element => {
+  const { size, imageUrl, title, history, linkUrl, match } = props;
+
   return (
-    <MenuItemContainer className={`${size}`}>
+    <MenuItemContainer
+      className={`${size}`}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <BackgroundImage
         style={{ backgroundImage: `url(${imageUrl})` }}
         className="background-image"
@@ -24,7 +29,7 @@ const MenuItem = ({
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);
 
 const MenuItemContainer = styled.div`
   min-width: 30%;
