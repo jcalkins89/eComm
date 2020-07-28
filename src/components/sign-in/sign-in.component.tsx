@@ -47,7 +47,6 @@ class SignIn extends React.Component<{}, SignInComponentState> {
             required
             handleChange={this.handleChange}
           />
-          <label>Email</label>
           <FormInput
             name="password"
             label="password"
@@ -56,7 +55,6 @@ class SignIn extends React.Component<{}, SignInComponentState> {
             required
             handleChange={this.handleChange}
           />
-          <label>Password</label>
 
           <input type="submit" value="Submit Form" />
         </form>
@@ -66,4 +64,6 @@ class SignIn extends React.Component<{}, SignInComponentState> {
 }
 export default SignIn;
 
-const SignInContainer = styled.div``;
+const SignInContainer = styled.div`
+  width: 30vw;
+`;

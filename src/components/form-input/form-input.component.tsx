@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-// onRouteChange: (param: string) => void
+import "./form-input.styles.scss";
+
+// TO DO: Remove SASS and convert all styling to Styled-Components
 
 const FormInput = ({
   handleChange,
@@ -20,10 +22,12 @@ const FormInput = ({
   value: string;
 }) => {
   return (
-    <Group>
-      <Input onChange={handleChange} {...props} />
+    <Group className="group">
+      <Input onChange={handleChange} {...props} className="form-input" />
       {label ? (
-        <FormInputLabel className={`${value.length} ? 'shrink' : ''`}>
+        <FormInputLabel
+          className={`${value.length ? "shrink" : ""} form-input-label`}
+        >
           {label}
         </FormInputLabel>
       ) : null}
@@ -68,7 +72,7 @@ const FormInputLabel = styled.label`
   top: 10px;
   transition: 300ms ease all;
 
-  &:focus .shrink {
+  &.shrink {
     top: -14px;
     font-size: 12px;
     color: "#000000";
