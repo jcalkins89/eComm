@@ -1,9 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-import "./form-input.styles.scss";
-
-// TO DO: Remove SASS and convert all styling to Styled-Components
+import styled, { css } from "styled-components";
 
 const FormInput = ({
   handleChange,
@@ -22,48 +18,62 @@ const FormInput = ({
   value: string;
 }) => {
   return (
-    <Group className="group">
-      <Input onChange={handleChange} {...props} className="form-input" />
+    <GroupContainer className="group">
+      <FormInputContainer
+        onChange={handleChange}
+        {...props}
+        className="form-input"
+      />
       {label ? (
-        <FormInputLabel
-          className={`${value.length ? "shrink" : ""} form-input-label`}
-        >
+        <FormInputLabel className={`${value ? "shrink" : ""} form-input-label`}>
           {label}
         </FormInputLabel>
       ) : null}
-    </Group>
+    </GroupContainer>
   );
 };
 
 export default FormInput;
 
-const Group = styled.div`
-  position: relative;
-  margin: 45px 0;
+const subColor = "grey";
+const mainColor = "black";
+
+const shrinkLabelStyles = css`
+  top: -14px;
+  font-size: 12px;
+  color: ${mainColor};
 `;
 
-const Input = styled.input`
-  .form-input {
-    background: none;
-    background-color: white;
-    color: "#808080";
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid #808080;
-    margin: 25px 0;
-
-    &:focus {
-      outline: none;
-    }
+export const GroupContainer = styled.div`
+  position: relative;
+  margin: 45px 0;
+  input[type="password"] {
+    letter-spacing: 0.3em;
   }
 `;
 
-const FormInputLabel = styled.label`
-  color: #808080;
+export const FormInputContainer = styled.input`
+  background: none;
+  background-color: white;
+  color: ${subColor};
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid ${subColor};
+  margin: 25px 0;
+  &:focus {
+    outline: none;
+  }
+  &:focus ~ label {
+    ${shrinkLabelStyles}
+  }
+`;
+
+export const FormInputLabel = styled.label`
+  color: ${subColor};
   font-size: 16px;
   font-weight: normal;
   position: absolute;
@@ -71,10 +81,7 @@ const FormInputLabel = styled.label`
   left: 5px;
   top: 10px;
   transition: 300ms ease all;
-
   &.shrink {
-    top: -14px;
-    font-size: 12px;
-    color: "#000000";
+    ${shrinkLabelStyles}
   }
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FormInput from "../form-input/form-input.component";
+import CustomButton from "../custom-button/custom-button.component";
 
 type SignInComponentState = {
   email: string;
@@ -24,7 +25,7 @@ class SignIn extends React.Component<{}, SignInComponentState> {
   };
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
 
     this.setState((prevState) => ({
       ...prevState,
@@ -55,8 +56,7 @@ class SignIn extends React.Component<{}, SignInComponentState> {
             required
             handleChange={this.handleChange}
           />
-
-          <input type="submit" value="Submit Form" />
+          <CustomButton type="submit">Sign In</CustomButton>
         </form>
       </SignInContainer>
     );
@@ -66,4 +66,6 @@ export default SignIn;
 
 const SignInContainer = styled.div`
   width: 30vw;
+  display: flex;
+  flex-direction: column;
 `;
