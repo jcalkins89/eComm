@@ -3,14 +3,14 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyDfoZTRU0uu4Yq0ZVrPBvy0u1djqEdqTI8",
-  authDomain: "ecomm-db-2236c.firebaseapp.com",
-  databaseURL: "https://ecomm-db-2236c.firebaseio.com",
-  projectId: "ecomm-db-2236c",
-  storageBucket: "ecomm-db-2236c.appspot.com",
-  messagingSenderId: "1021999456210",
-  appId: "1:1021999456210:web:a9c13f43bc81192e0eb20b",
-  measurementId: "G-N5F645X1VM",
+  apiKey: process.env.REACT_APP_FIREBASE_AUTH_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASURE_ID,
 };
 
 firebase.initializeApp(config);
