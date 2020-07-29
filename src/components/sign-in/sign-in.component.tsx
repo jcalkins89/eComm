@@ -25,7 +25,7 @@ class SignIn extends React.Component<{}, SignInComponentState> {
   };
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
+    const { value, name } = e.target;
 
     this.setState((prevState) => ({
       ...prevState,
