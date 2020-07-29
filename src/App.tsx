@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -8,21 +9,50 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import SignInAndRegistrationPage from "./pages/sign-in-registration-page/signIn-registration-page.component";
 import Header from "./components/header/header.component";
+import { auth } from "./firebase/firebase.utils";
 
-function App() {
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <>
-        <GlobalStyles />
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInAndRegistrationPage} />
-        </Switch>
-      </>
-    </ThemeProvider>
-  );
+type AppState = {
+  currentUser: Object | null;
+};
+
+class App extends React.Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      currentUser: null,
+    };
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      this.setState({ currentUser: user });
+
+      console.log(user);
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={lightTheme}>
+        <>
+          <GlobalStyles />
+          <Header currentUser={this.state.currentUser} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route path="/signin" component={SignInAndRegistrationPage} />
+          </Switch>
+        </>
+      </ThemeProvider>
+    );
+  }
 }
 
 export default App;

@@ -3,15 +3,25 @@ import styled from "styled-components";
 
 type ButtonProps = {
   children: React.ReactNode;
-  type: string;
+  type?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  isGoogleSignIn?: boolean;
 };
 
 const CustomButton: React.SFC<ButtonProps> = ({
   children,
   type,
+  isGoogleSignIn,
   ...otherProps
 }) => {
-  return <Button {...otherProps}>{children}</Button>;
+  return (
+    <Button
+      {...otherProps}
+      className={`${isGoogleSignIn ? "google-sign-in" : ""}`}
+    >
+      {children}
+    </Button>
+  );
 };
 
 export default CustomButton;
@@ -36,5 +46,15 @@ const Button = styled.button`
     background-color: white;
     color: black;
     border: 1px solid black;
+  }
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      background-color: #357ae8;
+      border: none;
+    }
   }
 `;
