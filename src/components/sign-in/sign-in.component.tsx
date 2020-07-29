@@ -3,6 +3,8 @@ import styled from "styled-components";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import { signInWithGoogle } from "../../firebase/firebase.utils";
+
 type SignInComponentState = {
   email: string;
   password: string;
@@ -56,7 +58,12 @@ class SignIn extends React.Component<{}, SignInComponentState> {
             required
             handleChange={this.handleChange}
           />
-          <CustomButton type="submit">Sign In</CustomButton>
+          <Buttons>
+            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>
+              Sign in with Google
+            </CustomButton>
+          </Buttons>
         </form>
       </SignInContainer>
     );
@@ -65,7 +72,12 @@ class SignIn extends React.Component<{}, SignInComponentState> {
 export default SignIn;
 
 const SignInContainer = styled.div`
-  width: 30vw;
+  width: 380px;
   display: flex;
   flex-direction: column;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
