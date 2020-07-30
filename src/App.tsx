@@ -38,10 +38,12 @@ class App extends React.Component<{}, AppState> {
               ...snapShot.data(),
             },
           });
+
+          console.log(this.state);
         });
-      } else {
-        this.setState({ currentUser: userAuth });
       }
+
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -55,6 +57,7 @@ class App extends React.Component<{}, AppState> {
         <>
           <GlobalStyles />
           <Header currentUser={this.state.currentUser} />
+          <h1>{`Current User: ${this.state}`}</h1>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopPage} />

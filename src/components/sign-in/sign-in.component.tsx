@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import FormInput from "../form-input/form-input.component";
@@ -29,10 +30,11 @@ class SignIn extends React.Component<{}, SignInComponentState> {
   handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value, name } = e.target;
 
-    this.setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    // this.setState((prevState) => ({
+    //   ...prevState,
+    //   [name]: value,
+    // }));
+    this.setState({ [name]: value });
   };
 
   render() {
