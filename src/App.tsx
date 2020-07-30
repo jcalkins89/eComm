@@ -57,7 +57,6 @@ class App extends React.Component<{}, AppState> {
         <>
           <GlobalStyles />
           <Header currentUser={this.state.currentUser} />
-          <h1>{`Current User: ${this.state}`}</h1>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopPage} />
