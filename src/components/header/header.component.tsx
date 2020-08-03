@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import CartIcon from "../cart-icon/cart-icon.component";
 
 import { auth } from "../../firebase/firebase.utils";
 
@@ -23,6 +24,7 @@ const Header = ({ currentUser }: { currentUser: Object | null }) => {
         ) : (
           <OptionLinkContainer to="/signin">SIGN IN</OptionLinkContainer>
         )}
+        <CartIcon />
       </Options>
     </HeaderContainer>
   );
