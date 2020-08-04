@@ -1,13 +1,16 @@
+// @ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart.component";
 
 import { auth } from "../../firebase/firebase.utils";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-const Header = ({ currentUser }: { currentUser: Object | null }) => {
+const Header = ({ currentUser, hidden }) => {
   return (
     <HeaderContainer>
       <LogoLinkContainer to="/">
@@ -23,13 +26,16 @@ const Header = ({ currentUser }: { currentUser: Object | null }) => {
         ) : (
           <OptionLinkContainer to="/signin">SIGN IN</OptionLinkContainer>
         )}
+        <CartIcon />
       </Options>
+      {hidden ? null : <CartDropdown />}
     </HeaderContainer>
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);

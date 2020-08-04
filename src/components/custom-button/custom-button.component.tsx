@@ -4,6 +4,7 @@ import styled from "styled-components";
 type ButtonProps = {
   children: React.ReactNode;
   type?: string;
+  style?: React.CSSProperties;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isGoogleSignIn?: boolean;
 };
@@ -11,6 +12,7 @@ type ButtonProps = {
 const CustomButton: React.SFC<ButtonProps> = ({
   children,
   type,
+  style,
   isGoogleSignIn,
   ...otherProps
 }) => {
