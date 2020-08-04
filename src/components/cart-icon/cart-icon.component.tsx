@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { ReactComponent as ShoppingCartIcon } from "../../assets/shopping-bag.svg";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 const CartIcon = ({ toggleCartHidden }) => {
   return (
