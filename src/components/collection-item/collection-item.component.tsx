@@ -1,10 +1,17 @@
+// @ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
 import { Item } from "../../pages/shop/shop.component";
 
-const CollectionItem = ({ item }: { item: Item }) => {
+const CollectionItem = ({
+  item,
+  addItem,
+}: {
+  item: Item;
+  addItem?: () => void;
+}) => {
   const { name, price, imageUrl } = item;
 
   return (
@@ -27,11 +34,11 @@ const CollectionItem = ({ item }: { item: Item }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  addItem: (item: any) => dispatch(addItem(item)),
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
 });
 
-export default connect(mapDispatchToProps)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem);
 
 const CollectionItemContainer = styled.div`
   width: 22%;
