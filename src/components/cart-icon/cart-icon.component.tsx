@@ -1,11 +1,13 @@
+// @ts-nocheck
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import { ReactComponent as ShoppingCartIcon } from "../../assets/shopping-bag.svg";
 
-const CartIcon = () => {
+const CartIcon = ({ toggleCartHidden }) => {
   return (
-    <CartIconContainer>
+    <CartIconContainer onClick={toggleCartHidden}>
       <ShoppingCartIconContainer>
         <ShoppingCartIcon />
       </ShoppingCartIconContainer>
@@ -14,7 +16,11 @@ const CartIcon = () => {
   );
 };
 
-export default CartIcon;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(CartIcon);
 
 const CartIconContainer = styled.div`
   width: 45px;
