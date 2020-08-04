@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { addItem } from "../../redux/cart/cart.actions";
+import { Item } from "../../pages/shop/shop.component";
 
-const CollectionItem = ({
-  name,
-  price,
-  imageUrl,
-}: {
-  name: string;
-  price: number;
-  imageUrl: string;
-}) => {
+const CollectionItem = ({ item }: { item: Item }) => {
+  const { name, price, imageUrl } = item;
+
   return (
     <CollectionItemContainer>
       <Image
@@ -20,14 +17,21 @@ const CollectionItem = ({
         <Name>{name}</Name>
         <Price>{price}</Price>
       </CollectionFooter>
-      <CollectionItemButton className="custom-button inverted">
+      <CollectionItemButton
+        onClick={() => addItem(item)}
+        className="custom-button inverted"
+      >
         Add to cart
       </CollectionItemButton>
     </CollectionItemContainer>
   );
 };
 
-export default CollectionItem;
+const mapDispatchToProps = (dispatch: any) => ({
+  addItem: (item: any) => dispatch(addItem(item)),
+});
+
+export default connect(mapDispatchToProps)(CollectionItem);
 
 const CollectionItemContainer = styled.div`
   width: 22%;
