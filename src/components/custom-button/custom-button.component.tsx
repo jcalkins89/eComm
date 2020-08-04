@@ -6,7 +6,9 @@ type ButtonProps = {
   type?: string;
   style?: React.CSSProperties;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
   isGoogleSignIn?: boolean;
+  inverted?: boolean;
 };
 
 const CustomButton: React.SFC<ButtonProps> = ({
@@ -14,12 +16,15 @@ const CustomButton: React.SFC<ButtonProps> = ({
   type,
   style,
   isGoogleSignIn,
+  inverted,
   ...otherProps
 }) => {
   return (
     <Button
       {...otherProps}
-      className={`${isGoogleSignIn ? "google-sign-in" : ""}`}
+      className={`${inverted ? "inverted" : ""}
+      ${isGoogleSignIn ? "google-sign-in" : ""}`}
+      style={style}
     >
       {children}
     </Button>
@@ -43,6 +48,8 @@ const Button = styled.button`
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     background-color: white;
@@ -56,6 +63,18 @@ const Button = styled.button`
 
     &:hover {
       background-color: #357ae8;
+      border: none;
+    }
+  }
+
+  &.inverted {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
       border: none;
     }
   }

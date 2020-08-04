@@ -12,11 +12,17 @@ const CollectionItem = ({
 }) => {
   return (
     <CollectionItemContainer>
-      <Image style={{ backgroundImage: `url(${imageUrl})` }} />
+      <Image
+        style={{ backgroundImage: `url(${imageUrl})` }}
+        className="image"
+      />
       <CollectionFooter>
         <Name>{name}</Name>
         <Price>{price}</Price>
       </CollectionFooter>
+      <CollectionItemButton className="custom-button inverted">
+        Add to cart
+      </CollectionItemButton>
     </CollectionItemContainer>
   );
 };
@@ -29,6 +35,53 @@ const CollectionItemContainer = styled.div`
   flex-direction: column;
   height: 350px;
   align-items: center;
+  position: relative;
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+
+    .custom-button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
+`;
+
+const CollectionItemButton = styled.button`
+  min-width: 165px;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+
+  width: 80%;
+  opacity: 0.7;
+  position: absolute;
+  top: 255px;
+  display: none;
+
+  &.inverted {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border: none;
+    }
+  }
 `;
 
 const Image = styled.div`
