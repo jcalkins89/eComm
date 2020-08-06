@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -5,6 +7,7 @@ import { Item } from "../../typescript-types/item-collection-types";
 
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
 
 const Cart = ({ cartItems }: { cartItems: Item[] }) => {
   return (
@@ -19,12 +22,10 @@ const Cart = ({ cartItems }: { cartItems: Item[] }) => {
   );
 };
 
-const mapStateToProps = ({
-  cart: { cartItems },
-}: {
-  cart: { cartItems: Item[] };
-}) => ({
-  cartItems,
+console.log("STATE: ", state);
+
+const mapStateToProps = (state) => ({
+  cartItems: selectCartItems(state),
 });
 
 export default connect(mapStateToProps)(Cart);
