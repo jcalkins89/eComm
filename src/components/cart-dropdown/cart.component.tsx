@@ -1,18 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { Item } from "../../typescript-types/item-collection-types";
 
 import CustomButton from "../custom-button/custom-button.component";
+import CartItem from "../cart-item/cart-item.component";
 
-const Cart = () => {
+const Cart = ({ cartItems }: { cartItems: Item[] }) => {
   return (
     <CartDropdown>
-      <CartItem />
+      <CartItems>
+        {cartItems.map((cartItem) => (
+          <CartItem key={cartItem.id} item={cartItem} />
+        ))}
+      </CartItems>
       <CustomButton style={{ marginTop: "auto" }}>GO TO CHECKOUT</CustomButton>
     </CartDropdown>
   );
 };
 
-export default Cart;
+const mapStateToProps = ({
+  cart: { cartItems },
+}: {
+  cart: { cartItems: Item[] };
+}) => ({
+  cartItems,
+});
+
+export default connect(mapStateToProps)(Cart);
 
 const CartDropdown = styled.div`
   position: absolute;
@@ -28,7 +43,7 @@ const CartDropdown = styled.div`
   z-index: 5;
 `;
 
-const CartItem = styled.div`
+const CartItems = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;

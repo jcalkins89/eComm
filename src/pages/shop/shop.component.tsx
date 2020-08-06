@@ -1,23 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
+import { Collection } from "../../typescript-types/item-collection-types";
 
 import SHOP_DATA from "../../mock-data/shop.data";
-
-export type Item = {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  quantity?: number;
-};
-
-export type Collection = {
-  id: number;
-  title: string;
-  routeName: string;
-  items: Item[];
-};
 
 type ShopPageState = {
   collections: Collection[];
