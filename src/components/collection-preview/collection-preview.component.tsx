@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Item } from "../../pages/shop/shop.component";
+import { Item } from "../../typescript-types/item-collection-types";
 import CollectionItem from "../collection-item/collection-item.component";
 
 const CollectionPreview = ({
