@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { Item } from "../../typescript-types/item-collection-types";
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -22,10 +23,8 @@ const Cart = ({ cartItems }: { cartItems: Item[] }) => {
   );
 };
 
-console.log("STATE: ", state);
-
-const mapStateToProps = (state) => ({
-  cartItems: selectCartItems(state),
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
 });
 
 export default connect(mapStateToProps)(Cart);
