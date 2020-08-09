@@ -9,9 +9,18 @@ import { Item } from "../../typescript-types/item-collection-types";
 
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { selectCartItems } from "../../redux/cart/cart.selectors";
 
-const Cart = ({ cartItems, history }: { cartItems: Item[]; history: any }) => {
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+
+const Cart = ({
+  cartItems,
+  history,
+  dispatch,
+}: {
+  cartItems: Item[];
+  history: any;
+}) => {
   return (
     <CartDropdown>
       <CartItems>
@@ -24,7 +33,10 @@ const Cart = ({ cartItems, history }: { cartItems: Item[]; history: any }) => {
         )}
       </CartItems>
       <CustomButton
-        onClick={() => history.push("/checkout")}
+        onClick={() => {
+          history.push("/checkout");
+          dispatch(toggleCartHidden());
+        }}
         style={{ marginTop: "auto" }}
       >
         GO TO CHECKOUT
