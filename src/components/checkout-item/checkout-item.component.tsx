@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Item } from "../../typescript-types/item-collection-types";
+import { connect } from "react-redux";
+
+import { clearItemFromCart } from "../../redux/cart/cart.actions";
 
 const CheckoutItem = ({
-  cartItem: { name, imageUrl, price, quantity },
+  cartItem,
+  clearItem,
 }: {
   cartItem: Item;
+  clearItem: any;
 }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -22,12 +28,16 @@ const CheckoutItem = ({
       <ItemCategory>{price}</ItemCategory>
 
       {/* remove button */}
-      <RemoveButton>&#10005;</RemoveButton>
+      <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
 };
 
-export default CheckoutItem;
+const mapDispatchToProps = (dispatch: any) => ({
+  clearItem: (item: Item) => dispatch(clearItemFromCart(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CheckoutItem);
 
 const CheckoutItemContainer = styled.div`
   width: 100%;
