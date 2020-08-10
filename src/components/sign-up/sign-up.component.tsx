@@ -90,6 +90,7 @@ class SignUp extends React.Component<{}, SignUpState> {
             name="password"
             label="Password"
             type="password"
+            // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,30}$"
             value={password}
             required
             handleChange={this.handleChange}

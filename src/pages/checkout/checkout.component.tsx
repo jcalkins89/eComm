@@ -24,7 +24,7 @@ const CheckoutPage = ({
     <CheckoutPageContainer>
       <CheckoutHeader>
         {HeaderTitles.map((title) => (
-          <HeaderBlock>{title}</HeaderBlock>
+          <HeaderBlock key={title}>{title}</HeaderBlock>
         ))}
       </CheckoutHeader>
       {cartItems.map((cartItem) => (
