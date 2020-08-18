@@ -7,6 +7,7 @@ import { createStructuredSelector } from "reselect";
 import { Item } from "../../typescript-types/item-collection-types";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
 import {
   selectCartItems,
@@ -31,6 +32,15 @@ const CheckoutPage = ({
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>TOTAL: ${total}</Total>
+      <TestWarning>
+        *Please use the following test credit card for payments*
+        <br />
+        4000 0566 5566 5556 - Exp: 01/21 - CVV: 123
+      </TestWarning>
+      <StripeCheckoutButton
+        price={total}
+        style={{ marginLeft: "auto", marginTop: "50px" }}
+      />
     </CheckoutPageContainer>
   );
 };
@@ -72,4 +82,11 @@ const Total = styled.div`
   margin-top: 30px;
   margin-left: auto;
   font-size: 36px;
+`;
+
+const TestWarning = styled.div`
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  color: red;
 `;
